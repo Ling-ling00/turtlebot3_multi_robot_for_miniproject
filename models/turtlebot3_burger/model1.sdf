@@ -38,12 +38,24 @@
           </mesh>
         </geometry>
         <material>
-          <ambient>0 0 0 1</ambient>
-          <diffuse>0 0 0 1</diffuse>
-          <specular>0 0 0 0</specular>
-          <emissive>0 1 0 1</emissive>
+          <ambient>0.24725 0.2245 0.0645 1.0</ambient>
+          <diffuse>0.34615 0.3143 0.0903 1.0</diffuse>
+          <specular>0.797357 0.723991 0.208006 1.0</specular>
+          <emissive>0 0 0 1</emissive>
         </material>
       </visual>
+
+      <sensor name="contact_sensor" type="contact">
+        <always_on>true</always_on>
+        <update_rate>15.0</update_rate>
+        <contact>
+          <collision>base_collision</collision>
+        </contact>
+        <plugin name="bumper" filename="libgazebo_ros_bumper.so">
+          <bumperTopicName>contact_sensor_state</bumperTopicName>
+          <frameName>base_link</frameName>
+        </plugin>
+      </sensor>
     </link>
 
     <link name="imu_link">
@@ -410,6 +422,6 @@
       <update_rate>30</update_rate>
       <joint_name>wheel_left_joint</joint_name>
       <joint_name>wheel_right_joint</joint_name>
-    </plugin>      
+    </plugin>
   </model>
 </sdf>
