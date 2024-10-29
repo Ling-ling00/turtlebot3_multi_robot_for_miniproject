@@ -17,7 +17,7 @@
           <iyz>2.8582649e-09</iyz>
           <izz>6.53050163e-01</izz>
         </inertia>
-        <mass>8.2573504</mass>
+        <mass>8.2573504e-01</mass>
       </inertial>
 
       <collision name="base_collision">

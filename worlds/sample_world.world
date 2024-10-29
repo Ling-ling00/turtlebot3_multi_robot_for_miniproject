@@ -518,7 +518,7 @@
         <kinematic>0</kinematic>
       </link>
     </model>
-    <state world_name='default'>
+    <!-- <state world_name='default'>
       <sim_time>176 565000000</sim_time>
       <real_time>178 263270761</real_time>
       <wall_time>1583306379 268950440</wall_time>
@@ -616,7 +616,7 @@
       <light name='sun'>
         <pose frame=''>0 0 10 0 -0 0</pose>
       </light>
-    </state>
+    </state> -->
     <gui fullscreen='0'>
       <camera name='user_camera'>
         <pose frame=''>-16.7443 -6.20219 18.8086 0 0.95164 0.300194</pose>

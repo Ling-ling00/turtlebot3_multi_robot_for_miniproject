@@ -39,7 +39,7 @@ def generate_launch_description():
     turtlebot3_multi_robot = get_package_share_directory("turtlebot3_multi_robot")
 
     world = os.path.join(
-        turtlebot3_multi_robot, "worlds", "sample_world.world"
+        turtlebot3_multi_robot, "worlds", "custom_world.world"
     )
 
     urdf_file_name = "turtlebot3_" + TURTLEBOT3_MODEL + ".urdf"
@@ -76,14 +76,15 @@ def generate_launch_description():
     # Remapping is required for state publisher otherwise /tf and /tf_static will get be published on root '/' namespace
     remappings = [("/tf", "tf"), ("/tf_static", "tf_static")]
 
-    x = 0.0
-    y = 0.0
+    x = ["-2.0", "2.0", "-2.0", "2.0"]
+    y = ["-2.0", "-2.0", "2.0", "2.0"]
     last_action = None
-    for name in ["robot1", "robot2", "robot3", "robot4"]:
+    name = ["robot1", "robot2", "robot3", "robot4"]
+    for i in range(len(name)):
         # Create state publisher node for that instance
         turtlebot_state_publisher = Node(
             package="robot_state_publisher",
-            namespace=name,
+            namespace=name[i],
             executable="robot_state_publisher",
             output="screen",
             parameters=[{"use_sim_time": False,
@@ -99,10 +100,10 @@ def generate_launch_description():
             arguments=[
                 "-file",
                 os.path.join(turtlebot3_multi_robot,'models', 'turtlebot3_' + TURTLEBOT3_MODEL, 'model.sdf'),
-                "-entity",name,
-                "-robot_namespace",name,
-                "-x",str(x),
-                "-y",str(y),
+                "-entity",name[i],
+                "-robot_namespace",name[i],
+                "-x",x[i],
+                "-y",y[i],
                 "-z","0.01",
                 "-unpause",
             ],
@@ -125,7 +126,6 @@ def generate_launch_description():
             )
             ld.add_action(spawn_turtlebot3_event)
         last_action = spawn_turtlebot3_burger
-        x += 0.5
 
 
     # Create state publisher node for that instance
@@ -149,8 +149,8 @@ def generate_launch_description():
             os.path.join(turtlebot3_multi_robot,'models', 'turtlebot3_' + TURTLEBOT3_MODEL, 'model1.sdf'),
             "-entity","robot5",
             "-robot_namespace","robot5",
-            "-x",str(x),
-            "-y",str(y),
+            "-x","0.0",
+            "-y","0.0",
             "-z","0.01",
             "-unpause",
         ],
